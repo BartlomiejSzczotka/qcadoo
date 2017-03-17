@@ -497,7 +497,7 @@ QCD.components.elements.grid.GridHeaderController = function (_gridController, _
         }
         var i;
         for (i = 0; i < data.rules.length - 1; ++i) {
-            multiSearchDialog.add();
+            multiSearchDialog.add(i);
         }
 
         var groupOpIndex = 0;
@@ -670,7 +670,7 @@ QCD.components.elements.grid.GridHeaderController = function (_gridController, _
     function onMultiSearchDialogSearchClicked(data) {
         var isEmpty = true;
         for (var iterator in data.rules) {
-            if (data.rules[iterator] != null && $.trim(data.rules[iterator].data) != "") {
+            if (data.rules[iterator] != null && (data.rules[iterator].op === "isnull" || $.trim(data.rules[iterator].data) != "")) {
                 isEmpty = false;
                 break;
             }
